@@ -33,7 +33,7 @@ def salvar_arquivo(dado, nome_arquivo, formato, pasta="arquivos"):
 
 
 #if "df_page1" not in st.session_state:
-df= pd.read_excel(r'Z:\RH\Cargos e Salários\LUCAS\AUTOMAÇÕES\PYTHON\streamlit\dataset\01 Spotify.xlsx')
+df= pd.read_csv("Z:\RH\Cargos e Salários\LUCAS\AUTOMAÇÕES\PYTHON\streamlit\dataset\01 Spotify.csv")
 st.session_state["df_page1"]= df
 
 
