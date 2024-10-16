@@ -8,7 +8,7 @@ from PIL import Image
 
 
 #if "df_page1" not in st.session_state:
-df= pd.read_excel('01 Spotify.xlsx')
+df= pd.read_excel('dataset/01 Spotify.xlsx')
 st.session_state["df_page1"]= df
 
 
