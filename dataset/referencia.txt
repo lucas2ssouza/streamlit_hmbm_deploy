@@ -1,0 +1,47 @@
+# ... (seu código anterior)
+
+if carregar_arquivo:
+    try:
+        img = Image.open(carregar_arquivo)
+        img = img.convert("RGB")  # Converter para RGB se necessário
+        st.image(img)
+        salvar_arquivo(img, SEXO, "JPEG", "Z:\RH\Cargos e Salários\LUCAS\AUTOMAÇÕES\PYTHON\streamlit")
+    except Exception as e:
+        st.error(f"Erro ao salvar a imagem: {e}")
+
+
+
+        pages = convert_from_path(carregar_arquivo, 500)  # Convertendo para imagens com resolução 500 DPI
+    image = pages[0]  # Acessando a primeira página
+
+    st.image(image)
+
+
+
+
+
+    def salvar_arquivo(dado, nome_arquivo, formato, pasta="arquivos"):
+    """Salva um arquivo com o nome e formato especificados.
+
+    Args:
+        dado: O dado a ser salvo (imagem ou PDF).
+        nome_arquivo: O nome do arquivo.
+        formato: O formato do arquivo (jpg, png, pdf, etc.).
+        pasta: A pasta onde o arquivo será salvo.
+    """
+
+    if not os.path.exists(pasta):
+        os.makedirs(pasta)
+
+    caminho_completo = os.path.join(pasta, f"{nome_arquivo}.{formato}")
+
+    if isinstance(dado, Image.Image):
+        dado.save(caminho_completo, formato.upper())
+    elif isinstance(dado, PyPDF2.PdfReader):
+        with open(caminho_completo, "wb") as arquivo:
+            escritor = PyPDF2.PdfWriter()
+            for pagina in dado.pages:
+                escritor.add_page(pagina)
+            escritor.write(arquivo)
+    else:
+        print("Tipo de dado não suportado.")
