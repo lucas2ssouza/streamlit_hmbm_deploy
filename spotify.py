@@ -2,34 +2,9 @@ import pandas as pd
 import streamlit as st
 import os
 from PIL import Image
-import PyPDF2
-from pdf2image import convert_from_path
 
-def salvar_arquivo(dado, nome_arquivo, formato, pasta="arquivos"):
-    """Salva um arquivo com o nome e formato especificados.
 
-    Args:
-        dado: O dado a ser salvo (imagem ou PDF).
-        nome_arquivo: O nome do arquivo.
-        formato: O formato do arquivo (jpg, png, pdf, etc.).
-        pasta: A pasta onde o arquivo será salvo.
-    """
 
-    if not os.path.exists(pasta):
-        os.makedirs(pasta)
-
-    caminho_completo = os.path.join(pasta, f"{nome_arquivo}.{formato}")
-
-    if isinstance(dado, Image.Image):
-        dado.save(caminho_completo, formato.upper())
-    elif isinstance(dado, PyPDF2.PdfReader):
-        with open(caminho_completo, "wb") as arquivo:
-            escritor = PyPDF2.PdfWriter()
-            for pagina in dado.pages:
-                escritor.add_page(pagina)
-            escritor.write(arquivo)
-    else:
-        print("Tipo de dado não suportado.")
 
 
 #if "df_page1" not in st.session_state:
