@@ -33,7 +33,8 @@ def salvar_arquivo(dado, nome_arquivo, formato, pasta="arquivos"):
 
 
 #if "df_page1" not in st.session_state:
-df= pd.read_csv(".\dataset\01 Spotify.csv")
+caminho_arq='.\dataset\01 Spotify.csv'
+df= pd.read_csv(caminho_arq)
 st.session_state["df_page1"]= df
 
 
@@ -80,7 +81,7 @@ btn = st.button("SALVAR")
 carregar_arquivo= st.file_uploader(
     "arquivo",type=['png', 'jpg','pdf']
     )
-df
+st.dataframe(df)
 #=df_filtrado['novo_s']==letra
 #print(df_filtrado)
 try:
